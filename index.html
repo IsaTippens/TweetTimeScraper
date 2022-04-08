@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    <script type="text/javascript" src="data.js"></script>
+
+</head>
+
+<body>
+    <p id="demo"></p>
+    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+    <canvas id="donut" style="width:100%;max-width:700px"></canvas>
+    <script>
+        var data = tweets
+        var result = [];
+        var keys = []
+        var bg = [];
+        for (var i in data)
+        {
+            keys.push(i)
+            result.push(data[i]);
+            r = Math.random() * 255;
+            g = Math.random() * 255;
+            b = Math.random() * 255;
+            bg.push("rgb(" + r + "," + g + "," + b + ")");
+        }
+
+        var myChart = new Chart(document.getElementById('myChart'), {
+            type: 'bar',
+            data: {
+                labels: keys,
+                datasets: [{
+                    data: result,
+                    backgroundColor: bg,
+                    borderWidth: 1
+
+                }]
+            }
+        });
+        var c = new Chart(document.getElementById('donut'), {
+            type: 'doughnut',
+            data: {
+                labels: keys,
+                datasets: [{
+                    data: result,
+                    backgroundColor: bg,
+                    borderWidth: 1
+
+                }]
+            }
+        });
+
+    </script>
+</body>
+
+</html>
